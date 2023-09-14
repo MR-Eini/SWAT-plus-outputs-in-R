@@ -1,0 +1,41 @@
+
+# install.packages("dplyr")  # Uncomment this line if you haven't installed it yet
+
+library(dplyr)
+library(readr)
+library(tidyverse)
+library(data.table)
+
+
+# Specify the file path
+setwd("S:/TxtInOut-CS4/")
+
+file_path <- "hru_wb_mon.txt"
+
+# Read the text file into a character vector
+lines <- readLines(file_path)
+
+# Remove the first and third rows
+lines <- lines[-c(1, 3)]
+
+# Optionally, save the modified lines back to a file
+# writeLines(lines, "modified_file.txt")
+
+# Print the modified lines
+#cat(lines, sep = "\n")
+
+# Split the text lines into columns (whitespace-separated)
+data <- strsplit(lines, "\\s+")
+
+# Extract the first row as column names
+col_names <- data[[1]]
+
+# Remove the first element from 'data' as it's now the column names
+data <- data[-1]
+
+# Create a data frame and set column names
+df <- as.data.frame(do.call(rbind, data))
+colnames(df) <- col_names
+
+# Remove first column (empty column)
+df <- df[, -1]
