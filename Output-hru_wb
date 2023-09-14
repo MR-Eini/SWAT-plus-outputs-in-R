@@ -22,7 +22,7 @@ lines <- lines[-c(1, 3)]
 # writeLines(lines, "modified_file.txt")
 
 # Print the modified lines
-#cat(lines, sep = "\n")
+# cat(lines, sep = "\n")
 
 # Split the text lines into columns (whitespace-separated)
 data <- strsplit(lines, "\\s+")
